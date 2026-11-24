@@ -87,6 +87,43 @@ Before you begin, ensure you have met the following requirements:
 
 ## RAG Evaluation
 
+## 📊 Performance Evaluation: Top-k vs. Top-p Retrieval
+
+We evaluated both retrieval strategies using the NCERT evaluation questions dataset and the English Hornbill vector database.
+
+### 1. Evaluation Results
+
+| Metric | Top-k (`k = 5`) | Top-p (`p = 0.85`) | Observation |
+|:---|:---:|:---:|:---|
+| **Avg. Retrieved Documents** | 5.00 | 10.20 | Top-p dynamically retrieves more documents based on cumulative probability. |
+| **Precision@k** | 0.2000 | 0.2000 | Both methods achieve identical precision. |
+| **Recall@k** | 0.2000 | 0.0982 | Top-k achieves higher recall in this evaluation. |
+| **MRR (Mean Reciprocal Rank)** | 0.2233 | 0.2233 | Both methods show identical first-relevant-result ranking performance. |
+| **NDCG** | 0.3723 | 0.3723 | Both methods maintain identical ranking quality. |
+| **ROUGE-L Score** | 0.3269 | 0.3211 | Top-k achieves slightly higher lexical similarity. |
+| **BLEU Score** | 0.0045 | **0.0066** | Top-p achieves approximately 46.7% higher BLEU score. |
+| **BERT / Semantic Score** | 0.1831 | 0.1831 | Both methods achieve identical semantic similarity. |
+| **Token F1** | 0.1461 | 0.1379 | Top-k achieves slightly higher token-level F1. |
+| **Avg. Response Time** | **4.00 sec** | 18.18 sec | Top-k is significantly faster. |
+
+### 2. Key Observations
+
+- **Adaptive Retrieval:** Top-p retrieves an average of 10.20 documents compared to 5.00 documents in Top-k, demonstrating its ability to dynamically adjust the retrieval context.
+- **Retrieval Quality:** Both methods achieve identical Precision@k, MRR, and NDCG scores, indicating similar measured retrieval ranking performance.
+- **Answer Generation:** Top-p achieves a higher BLEU score (0.0066 vs. 0.0045), while Top-k performs slightly better on ROUGE-L and Token F1.
+- **Semantic Similarity:** Both methods achieve an identical BERT score of 0.1831.
+- **Response Time:** Top-k is considerably faster, taking 4.00 seconds compared to 18.18 seconds for Top-p.
+
+### 3. Conclusion
+
+Top-p retrieval introduces an adaptive document selection mechanism that determines the number of retrieved chunks based on a cumulative probability threshold (`p = 0.85`), rather than relying on a fixed number of documents.
+
+Although Top-p retrieves more document chunks and achieves a higher BLEU score in this experiment, it also introduces additional response latency.
+
+The evaluation demonstrates the trade-off between **adaptive context retrieval and computational efficiency**. Top-k remains faster, while Top-p provides a more flexible retrieval strategy.
+
+Further experimentation with different probability thresholds and temperature values may help optimize the balance between retrieval quality, context size, and response time.
+
 ![RAG Evaluation Results](RAG_evaluation_result.png)
 
 ## License
