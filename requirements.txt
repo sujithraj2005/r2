@@ -1,0 +1,12 @@
+pdfplumber
+langchain
+langchain-community
+langchain-ollama
+streamlit
+requests
+fastapi
+pydantic
+langchain-chroma
+langchain-groq
+uvicorn
+python-dotenv

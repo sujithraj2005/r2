@@ -1,0 +1,12 @@
+Metric,Top-k (k=5),Top-p (p=0.85)
+Avg Retrieved Docs,5.0,10.2
+Precision@k,0.2,0.2
+Recall@k,0.2,0.0982
+MRR,0.2233,0.2233
+NDCG,0.3723,0.3723
+ROUGE-L,0.3269,0.3211
+BLEU,0.0045,0.0066
+BERT/Semantic Score,0.1831,0.1831
+Exact Match,0.0,0.0
+Token F1,0.1461,0.1379
+Response Time (s),4.0,18.18
